@@ -2,11 +2,14 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { CommonModule } from 'common.module';
+import { HttpExceptionFilter } from 'customError/http-users-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(CommonModule, { cors: true });
 
   app.useGlobalPipes(new ValidationPipe());
+
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   const options = new DocumentBuilder()
     .setTitle('Chat')
