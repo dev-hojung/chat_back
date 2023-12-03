@@ -16,11 +16,13 @@ export class UserService {
     const isUser = await this.findUser(params.email);
 
     if (isUser !== null) {
-      console.log('abcdeee');
       throw new CustomError(overlapEmail);
     }
 
-    this.usersRepository.insert(params);
+    await this.usersRepository.insert(params);
+    return {
+      success: true,
+    };
   }
 
   async findUser(email: string) {
