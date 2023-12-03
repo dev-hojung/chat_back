@@ -15,7 +15,8 @@ export class UserService {
   async createUser(params: CreateUserDto) {
     const isUser = await this.findUser(params.email);
 
-    if (isUser) {
+    if (isUser !== null) {
+      console.log('abcdeee');
       throw new CustomError(overlapEmail);
     }
 
