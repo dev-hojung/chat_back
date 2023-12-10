@@ -18,7 +18,7 @@ export class CreateUserDto {
 }
 
 // 로그인 DTO
-export class UserLoginDto {
+export class LoginUserDto {
   @ApiProperty({ description: '이메일' })
   @IsEmail()
   @IsNotEmpty()

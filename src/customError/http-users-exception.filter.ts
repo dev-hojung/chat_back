@@ -16,7 +16,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const status =
       exception instanceof HttpException
         ? exception.getStatus()
-        : customError.response.status;
+        : customError.response?.status
+          ? customError.response.status
+          : 400;
 
     response
       .status(status)
