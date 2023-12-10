@@ -40,7 +40,7 @@ export class UserService {
     const { email } = params;
     const user = await this.findUser(email);
 
-    if (!user) {
+    if (!user || params.password !== user.password) {
       throw new CustomError(loginError);
     }
 
