@@ -33,9 +33,6 @@ export class UserService {
 
     return {
       access_token,
-      name: res.name,
-      id: res.id,
-      expires: 8640000,
     };
   }
 
@@ -43,12 +40,7 @@ export class UserService {
     const { email } = params;
     const user = await this.findUser(email);
 
-    if (
-      !(
-        user
-        // && (await this.authService.compareHash(password, user.password))
-      )
-    ) {
+    if (!user) {
       throw new CustomError(loginError);
     }
 
